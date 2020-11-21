@@ -1,5 +1,7 @@
 Revision history for Perl extension Amon2::Auth::Site::LINE
 
-0.01  Sat Nov 21 14:18:34 2020
+{{$NEXT}}
+
+0.01 2020-11-21T06:33:44Z
         - original version
 

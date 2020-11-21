@@ -42,10 +42,10 @@
       },
       "runtime" : {
          "requires" : {
-            "perl" : "5.008001",
             "LWP::UserAgent" : "0",
             "Mouse" : "0",
-            "String::Random" : "0"
+            "String::Random" : "0",
+            "perl" : "5.008001"
          }
       },
       "test" : {
@@ -54,20 +54,23 @@
          }
       }
    },
-   "provides" : {
-      "Amon2::Auth::Site::LINE" : {
-         "file" : "lib/Amon2/Auth/Site/LINE.pm",
-         "version" : "0.01"
-      }
-   },
-   "release_status" : "stable",
+   "release_status" : "unstable",
    "resources" : {
-      "license" : [
-         "http://dev.perl.org/licenses/"
-      ]
+      "bugtracker" : {
+         "web" : "https://github.com/nipotan/p5-Amon2-Auth-Site-LINE/issues"
+      },
+      "homepage" : "https://github.com/nipotan/p5-Amon2-Auth-Site-LINE",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/nipotan/p5-Amon2-Auth-Site-LINE.git",
+         "web" : "https://github.com/nipotan/p5-Amon2-Auth-Site-LINE"
+      }
    },
    "version" : "0.01",
    "x_authority" : "cpan:TANIGUCHI",
+   "x_contributors" : [
+      "nipotan <nipotan@gmail.com>"
+   ],
    "x_serialization_backend" : "JSON::PP version 2.97001",
    "x_static_install" : 1
 }
