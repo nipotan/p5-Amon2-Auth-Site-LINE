@@ -8,7 +8,7 @@ use JSON;
 use Mouse;
 use LWP::UserAgent;
  
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub moniker { 'line' }
 
@@ -311,7 +311,7 @@ It uses LINE Login v2.1 APIs.
 
 =head1 ATTRIBUTES FOR CONFIGURATION FILE
 
-Following attributes are set in your configuration file such like `config/production.pl` and so on.
+Following attributes are set in your configuration file such like C<config/production.pl> and so on.
 
 =over 4
 
@@ -325,29 +325,29 @@ Mandatory. It is issued on LINE Developers Console.
 
 =item redirect_uri
 
-Optional. It's used for some API's `redirect_uri` parameter.
-If it's ommited, `callback_path` which is passed as an attribute for argument is used instead of it.
+Optional. It's used for some API's C<< redirect_uri >> parameter.
+If it's ommited, C<< callback_path >> which is passed as an attribute for argument is used instead of it.
 
 =item state
 
 Optional. If you don't set nothing, it generates a random string.
-The `state` parameter is used a system for preventing CSRF on OAuth 2.0. This attribute should not be set some foreseeable fixed value.
+The C<< state >> parameter is used a system for preventing CSRF on OAuth 2.0. This attribute should not be set some foreseeable fixed value.
 
 =item scope
 
 API scope as an array-ref.
-Available values are: `profile`, `openid` and `email`.
+Acceptable values are: C<< profile >>, C<< openid >> and C<< email >>.
 See detail: L<https://developers.line.biz/en/docs/line-login/integrate-line-login/#scope>
-Default value is `['profile']`
+Default value is C<< ['profile'] >>.
 
 =item nonce
 
 Optional. If you don't set nothing, it generates a random string.
-The `nonce` parameter is used a system for preventing replay attack / token interception attack on OpenID Connect. This attribute should not be set some foreseeable fixed value.
+The C<< nonce >> parameter is used a system for preventing replay attack / token interception attack on OpenID Connect. This attribute should not be set some foreseeable fixed value.
 
 =item prompt
 
-Optional. `consent` is acceptable.
+Optional. C<< consent >> is acceptable.
 
 =item max_age
 
@@ -359,17 +359,17 @@ Optional. Specified on OpenID Conjnect Core 1.0.
 
 =item bot_prompt
 
-Optional. `normal` and `aggressive` are acceptable.
+Optional. C<< normal >> and << aggressive >> are acceptable.
 
 =item state_session_key
 
-Optional. `state` parameter is kept on session with this specified session key during authentication.
-Default values `line_login_state`.
+Optional. C<< state >> parameter is kept on session with this specified session key during authentication.
+Default values C<< line_login_state >>.
 
 =item nonce_session_key
 
-Optional. `nonce` parameter is kept on session with this specified session key during.
-Default values `line_login_nonce`.
+Optional. C<< nonce >> parameter is kept on session with this specified session key during.
+Default values C<< line_login_nonce >>.
 
 =back
 
@@ -379,11 +379,11 @@ Default values `line_login_nonce`.
 
 =item authenticate_path
 
-Optional. Default value is `/auth/line/authenticate`. The path works for "login link".
+Optional. Default value is C<< /auth/line/authenticate >>. The path works for "login link".
 
 =item callback_path
 
-Optional. Default value is `/auth/line/callback`.
+Optional. Default value is C<< /auth/line/callback >>.
 
 =item on_finished
 
@@ -464,7 +464,7 @@ L<https://developers.line.biz/en/reference/line-login/>
  
 =item * Amon2::Plugin::Web::Auth
 
-L<https://metacpan.org/pod/Amon2::Plugin::Web::Auth>
+L<Amon2::Plugin::Web::Auth>
  
 =back
  
