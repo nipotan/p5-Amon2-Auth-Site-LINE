@@ -42,6 +42,7 @@
       },
       "runtime" : {
          "requires" : {
+            "JSON" : "0",
             "LWP::UserAgent" : "0",
             "Mouse" : "0",
             "String::Random" : "0",
@@ -66,7 +67,7 @@
          "web" : "https://github.com/nipotan/p5-Amon2-Auth-Site-LINE"
       }
    },
-   "version" : "0.01",
+   "version" : "0.02",
    "x_authority" : "cpan:TANIGUCHI",
    "x_contributors" : [
       "nipotan <nipotan@gmail.com>"

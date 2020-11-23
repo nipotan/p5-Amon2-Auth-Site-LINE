@@ -42,7 +42,7 @@ It uses LINE Login v2.1 APIs.
 
 # ATTRIBUTES FOR CONFIGURATION FILE
 
-Following attributes are set in your configuration file such like \`config/production.pl\` and so on.
+Following attributes are set in your configuration file such like `config/production.pl` and so on.
 
 - client\_id
 
@@ -54,29 +54,29 @@ Following attributes are set in your configuration file such like \`config/produ
 
 - redirect\_uri
 
-    Optional. It's used for some API's \`redirect\_uri\` parameter.
-    If it's ommited, \`callback\_path\` which is passed as an attribute for argument is used instead of it.
+    Optional. It's used for some API's `redirect_uri` parameter.
+    If it's ommited, `callback_path` which is passed as an attribute for argument is used instead of it.
 
 - state
 
     Optional. If you don't set nothing, it generates a random string.
-    The \`state\` parameter is used a system for preventing CSRF on OAuth 2.0. This attribute should not be set some foreseeable fixed value.
+    The `state` parameter is used a system for preventing CSRF on OAuth 2.0. This attribute should not be set some foreseeable fixed value.
 
 - scope
 
     API scope as an array-ref.
-    Available values are: \`profile\`, \`openid\` and \`email\`.
+    Acceptable values are: `profile`, `openid` and `email`.
     See detail: [https://developers.line.biz/en/docs/line-login/integrate-line-login/#scope](https://developers.line.biz/en/docs/line-login/integrate-line-login/#scope)
-    Default value is \`\['profile'\]\`
+    Default value is `['profile']`.
 
 - nonce
 
     Optional. If you don't set nothing, it generates a random string.
-    The \`nonce\` parameter is used a system for preventing replay attack / token interception attack on OpenID Connect. This attribute should not be set some foreseeable fixed value.
+    The `nonce` parameter is used a system for preventing replay attack / token interception attack on OpenID Connect. This attribute should not be set some foreseeable fixed value.
 
 - prompt
 
-    Optional. \`consent\` is acceptable.
+    Optional. `consent` is acceptable.
 
 - max\_age
 
@@ -88,27 +88,27 @@ Following attributes are set in your configuration file such like \`config/produ
 
 - bot\_prompt
 
-    Optional. \`normal\` and \`aggressive\` are acceptable.
+    Optional. `normal` and << aggressive >> are acceptable.
 
 - state\_session\_key
 
-    Optional. \`state\` parameter is kept on session with this specified session key during authentication.
-    Default values \`line\_login\_state\`.
+    Optional. `state` parameter is kept on session with this specified session key during authentication.
+    Default values `line_login_state`.
 
 - nonce\_session\_key
 
-    Optional. \`nonce\` parameter is kept on session with this specified session key during.
-    Default values \`line\_login\_nonce\`.
+    Optional. `nonce` parameter is kept on session with this specified session key during.
+    Default values `line_login_nonce`.
 
 # ATTRIBUTES FOR ARGUMENT
 
 - authenticate\_path
 
-    Optional. Default value is \`/auth/line/authenticate\`. The path works for "login link".
+    Optional. Default value is `/auth/line/authenticate`. The path works for "login link".
 
 - callback\_path
 
-    Optional. Default value is \`/auth/line/callback\`.
+    Optional. Default value is `/auth/line/callback`.
 
 - on\_finished
 
@@ -178,4 +178,4 @@ it under the same terms as Perl itself.
 
 - Amon2::Plugin::Web::Auth
 
-    [https://metacpan.org/pod/Amon2::Plugin::Web::Auth](https://metacpan.org/pod/Amon2::Plugin::Web::Auth)
+    [Amon2::Plugin::Web::Auth](https://metacpan.org/pod/Amon2::Plugin::Web::Auth)

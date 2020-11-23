@@ -2,6 +2,10 @@ Revision history for Perl extension Amon2::Auth::Site::LINE
 
 {{$NEXT}}
 
+0.02 2020-11-23T00:04:20Z
+        - Fix pod.
+        - Fix cpanfile.
+
 0.01 2020-11-21T06:33:44Z
         - original version
 
