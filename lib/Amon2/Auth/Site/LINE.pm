@@ -8,7 +8,7 @@ use JSON;
 use Mouse;
 use LWP::UserAgent;
  
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 sub moniker { 'line' }
 
@@ -160,6 +160,8 @@ sub callback {
  
     my @args = ();
 
+    my %api_response = ();
+
     # getting an access token
     my $token_data;
     {
@@ -181,6 +183,7 @@ sub callback {
         }
 
         $token_data = decode_json($res->content);
+        %api_response = (%api_response, %$token_data);
     }
 
     # verify access token
@@ -201,11 +204,11 @@ sub callback {
         }
 
         push @args, $token_data->{access_token};
+        %api_response = (%api_response, %$verify_data);
     }
 
-
     # get user profile
-    if ($self->user_info) {
+    if ($self->user_info && $verify_data->{scope} =~ /\bprofile\b/) {
         my $uri = URI->new($self->profile_url);
         my $res = $self->ua->get(
             $uri->as_string,
@@ -216,8 +219,9 @@ sub callback {
             return $callback->{on_error}->($res->decoded_content);
         };
         my $user = decode_json($res->content);
-        push @args, $user;
+        %api_response = (%api_response, %$user);
     }
+    push @args, \%api_response;
 
     $self->clear_state($c);
     $self->clear_nonce($c);
@@ -359,7 +363,7 @@ Optional. Specified on OpenID Conjnect Core 1.0.
 
 =item bot_prompt
 
-Optional. C<< normal >> and << aggressive >> are acceptable.
+Optional. C<< normal >> and C<< aggressive >> are acceptable.
 
 =item state_session_key
 
@@ -433,13 +437,13 @@ on_finished callback function is called if an authentication was finished.ck fun
 The arguments are following:
  
     sub {
-        my ($c, $access_token, $user) = @_;
+        my ($c, $access_token, $api_response) = @_;
         ...
     }
 
-C<< $user >> contains user information. This code contains a information like L<https://developers.line.biz/en/reference/line-login/#get-profile-response>.
- 
-If you set $auth-user_info> as a false value, authentication engine does not pass $user.
+C<< $api_response >> contains an issued access token, a verified access token validity, and a gotten user profile. And they are all merged into one hash-ref.
+This code contains a information like L<https://developers.line.biz/en/reference/line-login/#issue-token-response>, L<https://developers.line.biz/en/reference/line-login/#verify-access-token-response> and L<https://developers.line.biz/en/reference/line-login/#get-profile-response>.
+If you set C<< $auth->user_info >> as a false value and/or you don't set C<< profile >> as the C<< scope >> attribute, authentication engine does not pass a gotten user profile.
  
 =back
  

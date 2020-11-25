@@ -38,7 +38,7 @@ DESCRIPTION
 
 ATTRIBUTES FOR CONFIGURATION FILE
     Following attributes are set in your configuration file such like
-    `config/production.pl` and so on.
+    "config/production.pl" and so on.
 
     client_id
         Mandatory. It is issued on LINE Developers Console.
@@ -47,29 +47,29 @@ ATTRIBUTES FOR CONFIGURATION FILE
         Mandatory. It is issued on LINE Developers Console.
 
     redirect_uri
-        Optional. It's used for some API's `redirect_uri` parameter. If it's
-        ommited, `callback_path` which is passed as an attribute for
+        Optional. It's used for some API's "redirect_uri" parameter. If it's
+        ommited, "callback_path" which is passed as an attribute for
         argument is used instead of it.
 
     state
         Optional. If you don't set nothing, it generates a random string.
-        The `state` parameter is used a system for preventing CSRF on OAuth
+        The "state" parameter is used a system for preventing CSRF on OAuth
         2.0. This attribute should not be set some foreseeable fixed value.
 
     scope
-        API scope as an array-ref. Available values are: `profile`, `openid`
-        and `email`. See detail:
+        API scope as an array-ref. Acceptable values are: "profile",
+        "openid" and "email". See detail:
         <https://developers.line.biz/en/docs/line-login/integrate-line-login
-        /#scope> Default value is `['profile']`
+        /#scope> Default value is "['profile']".
 
     nonce
         Optional. If you don't set nothing, it generates a random string.
-        The `nonce` parameter is used a system for preventing replay attack
+        The "nonce" parameter is used a system for preventing replay attack
         / token interception attack on OpenID Connect. This attribute should
         not be set some foreseeable fixed value.
 
     prompt
-        Optional. `consent` is acceptable.
+        Optional. "consent" is acceptable.
 
     max_age
         Optional. Specified on OpenID Conjnect Core 1.0.
@@ -78,24 +78,24 @@ ATTRIBUTES FOR CONFIGURATION FILE
         Optional. Specified on OpenID Conjnect Core 1.0.
 
     bot_prompt
-        Optional. `normal` and `aggressive` are acceptable.
+        Optional. "normal" and "aggressive" are acceptable.
 
     state_session_key
-        Optional. `state` parameter is kept on session with this specified
+        Optional. "state" parameter is kept on session with this specified
         session key during authentication. Default values
-        `line_login_state`.
+        "line_login_state".
 
     nonce_session_key
-        Optional. `nonce` parameter is kept on session with this specified
-        session key during. Default values `line_login_nonce`.
+        Optional. "nonce" parameter is kept on session with this specified
+        session key during. Default values "line_login_nonce".
 
 ATTRIBUTES FOR ARGUMENT
     authenticate_path
-        Optional. Default value is `/auth/line/authenticate`. The path works
+        Optional. Default value is "/auth/line/authenticate". The path works
         for "login link".
 
     callback_path
-        Optional. Default value is `/auth/line/callback`.
+        Optional. Default value is "/auth/line/callback".
 
     on_finished
         Mandatory. The details are described following.
@@ -133,17 +133,21 @@ METHODS
             The arguments are following:
 
                 sub {
-                    my ($c, $access_token, $user) = @_;
+                    my ($c, $access_token, $api_response) = @_;
                     ...
                 }
 
-            $user contains user information. This code contains a
-            information like
+            $api_response contains an issued access token, a verified access
+            token validity, and a gotten user profile. And they are all
+            merged into one hash-ref. This code contains a information like
+            <https://developers.line.biz/en/reference/line-login/#issue-toke
+            n-response>,
+            <https://developers.line.biz/en/reference/line-login/#verify-acc
+            ess-token-response> and
             <https://developers.line.biz/en/reference/line-login/#get-profil
-            e-response>.
-
-            If you set $auth-user_info> as a false value, authentication
-            engine does not pass $user.
+            e-response>. If you set "$auth->user_info" as a false value
+            and/or you don't set "profile" as the "scope" attribute,
+            authentication engine does not pass a gotten user profile.
 
 AUTHOR
     Koichi Taniguchi (a.k.a. nipotan) <taniguchi@cpan.org>
@@ -159,5 +163,5 @@ SEE ALSO
 
     *   Amon2::Plugin::Web::Auth
 
-        <https://metacpan.org/pod/Amon2::Plugin::Web::Auth>
+        Amon2::Plugin::Web::Auth
 
