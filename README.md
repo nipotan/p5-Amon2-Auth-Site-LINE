@@ -88,7 +88,7 @@ Following attributes are set in your configuration file such like `config/produc
 
 - bot\_prompt
 
-    Optional. `normal` and << aggressive >> are acceptable.
+    Optional. `normal` and `aggressive` are acceptable.
 
 - state\_session\_key
 
@@ -153,13 +153,13 @@ Following attributes are set in your configuration file such like `config/produc
         The arguments are following:
 
             sub {
-                my ($c, $access_token, $user) = @_;
+                my ($c, $access_token, $api_response) = @_;
                 ...
             }
 
-        `$user` contains user information. This code contains a information like [https://developers.line.biz/en/reference/line-login/#get-profile-response](https://developers.line.biz/en/reference/line-login/#get-profile-response).
-
-        If you set $auth-user\_info> as a false value, authentication engine does not pass $user.
+        `$api_response` contains an issued access token, a verified access token validity, and a gotten user profile. And they are all merged into one hash-ref.
+        This code contains a information like [https://developers.line.biz/en/reference/line-login/#issue-token-response](https://developers.line.biz/en/reference/line-login/#issue-token-response), [https://developers.line.biz/en/reference/line-login/#verify-access-token-response](https://developers.line.biz/en/reference/line-login/#verify-access-token-response) and [https://developers.line.biz/en/reference/line-login/#get-profile-response](https://developers.line.biz/en/reference/line-login/#get-profile-response).
+        If you set `$auth->user_info` as a false value and/or you don't set `profile` as the `scope` attribute, authentication engine does not pass a gotten user profile.
 
 # AUTHOR
 
