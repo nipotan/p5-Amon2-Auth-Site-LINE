@@ -8,7 +8,7 @@ use JSON;
 use Mouse;
 use LWP::UserAgent;
  
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 sub moniker { 'line' }
 
@@ -120,7 +120,7 @@ sub auth_uri {
     my($self, $c, $callback_uri) = @_;
 
     # required parameters
-    my $redirect_uri = $self->redirect_uri // $callback_uri;
+    my $redirect_uri = $self->redirect_uri || $callback_uri;
     my %params = (
         response_type => 'code',
         client_id     => $self->client_id,
@@ -165,7 +165,7 @@ sub callback {
     # getting an access token
     my $token_data;
     {
-        my $redirect_uri = $self->redirect_uri // do { # it should be me
+        my $redirect_uri = $self->redirect_uri || do { # it should be me
             my $current_uri = $c->req->uri;
             $current_uri->query(undef);
             $current_uri->as_string;
@@ -231,7 +231,7 @@ sub callback {
 
 sub get_state {
     my($self, $c) = @_;
-    my $state = $self->state // $c->session->get($self->state_session_key) // do {
+    my $state = $self->state || $c->session->get($self->state_session_key) || do {
         require String::Random;
         String::Random->new->randregex('[a-zA-Z0-9]{16}');
     };
@@ -251,7 +251,7 @@ sub clear_state {
 
 sub get_nonce {
     my($self, $c) = @_;
-    my $nonce = $self->nonce // $c->session->get($self->nonce_session_key) // do {
+    my $nonce = $self->nonce || $c->session->get($self->nonce_session_key) || do {
         require String::Random;
         String::Random->new->randregex('[a-zA-Z0-9]{16}');
     };
@@ -295,9 +295,9 @@ Amon2::Auth::Site::LINE - LINE integration for Amon2
  __PACKAGE__->load_plugin('Web::Auth', {
      module => 'LINE',
      on_finished => sub {
-         my($c, $token, $user) = @_;
-         my $user_id = $user->{userId};
-         my $name    = $user->{displayName};
+         my($c, $token, $api_response) = @_;
+         my $user_id = $api_response->{userId};
+         my $name    = $api_response->{displayName};
          $c->session->set(user_id => $user_id);
          $c->session->set(name    => $name);
          return $c->redirect('/');
