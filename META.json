@@ -4,13 +4,13 @@
       "Koichi Taniguchi (a.k.a. nipotan) <taniguchi@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v3.1.11, CPAN::Meta::Converter version 2.143240",
+   "generated_by" : "Minilla/v3.1.11, CPAN::Meta::Converter version 2.150010",
    "license" : [
       "perl_5"
    ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
-      "version" : "2"
+      "version" : 2
    },
    "name" : "Amon2-Auth-Site-LINE",
    "no_index" : {
@@ -46,6 +46,7 @@
             "LWP::UserAgent" : "0",
             "Mouse" : "0",
             "String::Random" : "0",
+            "URI" : "0",
             "perl" : "5.008001"
          }
       },
@@ -67,10 +68,11 @@
          "web" : "https://github.com/nipotan/p5-Amon2-Auth-Site-LINE"
       }
    },
-   "version" : "0.03",
+   "version" : "0.04",
    "x_authority" : "cpan:TANIGUCHI",
    "x_contributors" : [
       "nipotan <nipotan@gmail.com>"
    ],
+   "x_serialization_backend" : "JSON::PP version 2.97001",
    "x_static_install" : 1
 }

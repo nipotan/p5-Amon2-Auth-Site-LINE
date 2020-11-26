@@ -21,9 +21,9 @@ Amon2::Auth::Site::LINE - LINE integration for Amon2
     __PACKAGE__->load_plugin('Web::Auth', {
         module => 'LINE',
         on_finished => sub {
-            my($c, $token, $user) = @_;
-            my $user_id = $user->{userId};
-            my $name    = $user->{displayName};
+            my($c, $token, $api_response) = @_;
+            my $user_id = $api_response->{userId};
+            my $name    = $api_response->{displayName};
             $c->session->set(user_id => $user_id);
             $c->session->set(name    => $name);
             return $c->redirect('/');
