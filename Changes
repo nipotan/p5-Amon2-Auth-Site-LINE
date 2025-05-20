@@ -1,6 +1,8 @@
 Revision history for Perl extension Amon2::Auth::Site::LINE
 
 {{$NEXT}}
+
+0.05 2025-05-20T12:13:18Z
         - Previously, this module used String::Random module which uses rand(),
           a built-in Perl function, to generate random tokens when the state
           and nonce parameters in OAuth2 are unset.
